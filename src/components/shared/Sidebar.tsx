@@ -28,9 +28,9 @@ const Sidebar = () => {
                   return (
                     <li
                       key={link.route}
-                      className={`flex justify-center items-center text-base font-semibold w-full whitespace-nowrap rounded-xl bg-cover transition-all hover:bg-green-400 hover:shadow-inner group ${
+                      className={`flex justify-center items-center text-base font-semibold w-full whitespace-nowrap rounded-xl bg-cover transition-all hover:bg-accent-400 hover:shadow-inner group ${
                         isActive
-                          ? 'bg-green-400 text-dark-400'
+                          ? 'bg-accent-400 text-dark-400'
                           : 'text-dark-700'
                       }`}
                     >
@@ -57,9 +57,9 @@ const Sidebar = () => {
                   return (
                     <li
                       key={link.route}
-                      className={`flex justify-center items-center text-base font-semibold w-full whitespace-nowrap rounded-xl bg-cover transition-all hover:bg-green-400 hover:shadow-inner group ${
+                      className={`flex justify-center items-center text-base font-semibold w-full whitespace-nowrap rounded-xl bg-cover transition-all hover:bg-accent-400 hover:shadow-inner group ${
                         isActive
-                          ? 'bg-green-400 text-dark-400'
+                          ? 'bg-accent-400 text-dark-400'
                           : 'text-dark-700'
                       }`}
                     >
@@ -101,7 +101,7 @@ const Sidebar = () => {
           <SignedOut>
             <Button
               asChild
-              className="buttonpy-4 px-6 flex-center gap-3 rounded-full p-16-semibold focus-visible:ring-offset-0 focus-visible:ring-transparent bg-green-400 bg-cover"
+              className="buttonpy-4 px-6 flex-center gap-3 rounded-full p-16-semibold focus-visible:ring-offset-0 focus-visible:ring-transparent bg-accent-400 bg-cover"
             >
               <Link href="/sign-in">Login</Link>
             </Button>
