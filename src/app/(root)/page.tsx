@@ -4,14 +4,14 @@ const Home = () => {
   return (
     <div>
       <p>Home</p>
-      <div>
+      {/* <div>
         <SignedOut>
           <SignInButton />
         </SignedOut>
         <SignedIn>
           <UserButton />
         </SignedIn>
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -27,6 +27,7 @@ export default function RootLayout({
   return (
     <ClerkProvider
       appearance={{ baseTheme: dark, variables: { colorPrimary: '#4ade80' } }}
+      afterSignOutUrl="/"
     >
       <html lang="en">
         <body
