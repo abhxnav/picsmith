@@ -1,5 +1,7 @@
 import { Document } from 'mongoose'
 
+// ========== MODELS' INTERFACES ==========
+
 export interface IImage extends Document {
   title: string
   transformationType: string
@@ -35,4 +37,22 @@ export interface ITransaction extends Document {
   plan?: string
   credits?: number
   buyer?: IUser
+}
+
+// ========== USER PARAMS ==========
+
+declare type CreateUserParams = {
+  clerkId: string
+  email: string
+  username: string
+  firstName: string
+  lastName: string
+  photo: string
+}
+
+declare type UpdateUserParams = {
+  firstName: string
+  lastName: string
+  username: string
+  photo: string
 }
