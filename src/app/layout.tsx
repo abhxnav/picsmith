@@ -28,6 +28,8 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{ baseTheme: dark, variables: { colorPrimary: '#4ade80' } }}
       afterSignOutUrl="/"
+      signInForceRedirectUrl="/"
+      signUpForceRedirectUrl="/"
     >
       <html lang="en">
         <body
