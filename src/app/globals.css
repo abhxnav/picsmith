@@ -6,6 +6,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.select-item:hover {
+  @apply bg-accent-400 !important
+}
+
+.select-item:focus {
+  @apply bg-accent-400 !important
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
