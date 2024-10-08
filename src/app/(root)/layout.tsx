@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { MobileNav, Sidebar } from '@/components'
+import { Toaster } from '@/components/ui'
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -12,6 +13,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
           {children}
         </div>
       </div>
+
+      <Toaster />
     </main>
   )
 }

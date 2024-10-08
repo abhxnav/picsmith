@@ -107,4 +107,12 @@ declare type CustomFormFieldProps = {
   className?: string
 }
 
-export type AspectRatioKey = keyof typeof aspectRatioOptions
+declare type AspectRatioKey = keyof typeof aspectRatioOptions
+
+declare type MediaUploaderProps = {
+  onValueChange: (value: string) => void
+  setImage: React.Dispatch<any>
+  publicId: string
+  image: any
+  type: string
+}

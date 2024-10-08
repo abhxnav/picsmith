@@ -23,7 +23,7 @@ import {
   TransformationFormProps,
   Transformations,
 } from '@/types'
-import { CustomFormField } from '@/components'
+import { CustomFormField, MediaUploader } from '@/components'
 import { useState, useTransition } from 'react'
 import { debounce, mergeObjects } from '@/lib/utils'
 
@@ -120,7 +120,7 @@ const TransformationForm = ({
 
     setNewTransformation(null)
 
-    // TODO: update credits 
+    // TODO: update credits
   }
 
   return (
@@ -219,6 +219,23 @@ const TransformationForm = ({
             )}
           </div>
         )}
+
+        <div className="grid h-fit min-h-52 grid-cols-1 gap-5 py-4 md:grid-cols-2">
+          <CustomFormField
+            control={form.control}
+            name="publicId"
+            className="flex size-full flex-col"
+            render={({ field }) => (
+              <MediaUploader
+                onValueChange={field.onChange}
+                image={image}
+                setImage={setImage}
+                type={type}
+                publicId={field.value}
+              />
+            )}
+          />
+        </div>
 
         <div className="flex flex-col gap-4">
           <Button
