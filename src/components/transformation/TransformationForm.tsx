@@ -23,7 +23,7 @@ import {
   TransformationFormProps,
   Transformations,
 } from '@/types'
-import { CustomFormField, MediaUploader } from '@/components'
+import { CustomFormField, MediaUploader, TransformedImage } from '@/components'
 import { useState, useTransition } from 'react'
 import { debounce, mergeObjects } from '@/lib/utils'
 
@@ -234,6 +234,15 @@ const TransformationForm = ({
                 publicId={field.value}
               />
             )}
+          />
+
+          <TransformedImage
+            image={image}
+            type={type}
+            title={form.getValues().title}
+            isTransforming={isTransforming}
+            setIsTransforming={setIsTransforming}
+            transformationConfig={transformationConfig}
           />
         </div>
 

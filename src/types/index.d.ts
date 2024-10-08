@@ -1,5 +1,5 @@
 import { Document } from 'mongoose'
-import { formSchema } from '@/components/shared/TransformationForm'
+import { formSchema } from '@/components/transformation/TransformationForm'
 import { z } from 'zod'
 import { Control } from 'react-hook-form'
 import React from 'react'
@@ -115,4 +115,14 @@ declare type MediaUploaderProps = {
   publicId: string
   image: any
   type: string
+}
+
+declare type TransformedImageProps = {
+  image: any
+  type: string
+  title: string
+  transformationConfig: Transformations | null
+  isTransforming: boolean
+  hasDownload?: boolean
+  setIsTransforming?: React.Dispatch<React.SetStateAction<boolean>>
 }
