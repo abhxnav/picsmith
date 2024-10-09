@@ -93,3 +93,6 @@ const toBase64 = (str: string) =>
 export const dataUrl = `data:image/svg+xml;base64,${toBase64(
   shimmer(1000, 1000)
 )}`
+
+// =========== PARSE ===========
+export const ParseStringify = (data: any) => JSON.parse(JSON.stringify(data))

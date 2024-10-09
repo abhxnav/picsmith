@@ -26,6 +26,7 @@ import {
 import { CustomFormField, MediaUploader, TransformedImage } from '@/components'
 import { useState, useTransition } from 'react'
 import { debounce, mergeObjects } from '@/lib/utils'
+import { updateCredits } from '@/lib/actions/user.actions'
 
 export const formSchema = z.object({
   title: z.string(),
@@ -111,6 +112,7 @@ const TransformationForm = ({
     }, 1000)
   }
 
+  // TODO: Make credit fee dynamic
   const onTransformHandler = async () => {
     setIsTransforming(true)
 
@@ -120,7 +122,9 @@ const TransformationForm = ({
 
     setNewTransformation(null)
 
-    // TODO: update credits
+    startTransition(async () => {
+      await updateCredits(userId, -1)
+    })
   }
 
   return (

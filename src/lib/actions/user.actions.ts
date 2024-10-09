@@ -3,7 +3,7 @@
 import { connectToDatabase } from '@/lib/database/mongoose'
 import User from '@/lib/database/models/user.model'
 import { CreateUserParams, UpdateUserParams } from '@/types'
-import { handleError } from '@/lib/utils'
+import { handleError, ParseStringify } from '@/lib/utils'
 import { revalidatePath } from 'next/cache'
 
 // CREATE
@@ -60,6 +60,25 @@ export const deleteUser = async (userId: string) => {
     revalidatePath('/')
 
     return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null
+  } catch (error) {
+    handleError(error)
+  }
+}
+
+// CREDITS
+export const updateCredits = async (userId: string, creditFee: number) => {
+  try {
+    await connectToDatabase()
+
+    const updatedUserCredits = await User.findOneAndUpdate(
+      { _id: userId },
+      { $inc: { credits: creditFee } },
+      { new: true }
+    )
+
+    if (!updatedUserCredits) throw new Error('User credits update failed')
+
+    return ParseStringify(updatedUserCredits)
   } catch (error) {
     handleError(error)
   }
