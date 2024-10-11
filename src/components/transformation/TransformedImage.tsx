@@ -37,32 +37,24 @@ const TransformedImage = ({
       </div>
 
       {image?.publicId && transformationConfig ? (
-        <div className="relative">
-          <CldImage
-            width={getImageSize(type, image, 'width')}
-            height={getImageSize(type, image, 'height')}
-            src={image?.public_id}
-            alt={image.title}
-            sizes={'(max-width: 768px) 100vw, 50vw'}
-            placeholder={dataUrl as PlaceholderValue}
-            className="h-fit min-h-72 w-full rounded-xl border-2 border-dashed border-green-200/40 bg-dark-300 object-cover p-2"
-            onLoad={() => {
+        <CldImage
+          width={getImageSize(type, image, 'width')}
+          height={getImageSize(type, image, 'height')}
+          src={image?.publicId}
+          alt={image?.title}
+          sizes={'(max-width: 768px) 100vw, 50vw'}
+          placeholder={dataUrl as PlaceholderValue}
+          className="h-fit min-h-72 w-full rounded-xl border-2 border-dashed border-green-200/40 bg-dark-300 object-cover p-2"
+          onLoad={() => {
+            setIsTransforming && setIsTransforming(false)
+          }}
+          onError={() => {
+            debounce(() => {
               setIsTransforming && setIsTransforming(false)
-            }}
-            onError={() => {
-              debounce(() => {
-                setIsTransforming && setIsTransforming(false)
-              }, 8000)
-            }}
-            {...transformationConfig}
-          />
-
-          {isTransforming && (
-            <div className="flex items-center justify-center absolute left-[50%] top-[50%] size-full -translate-x-1/2 -translate-y-1/2 flex-col gap-2 rounded-xl border bg-dark-700/90">
-              <Image src="" width={50} height={50} alt="transforming" />
-            </div>
-          )}
-        </div>
+            }, 8000)
+          }}
+          {...transformationConfig}
+        />
       ) : (
         <div className="flex items-center justify-center font-medium text-sm h-full min-h-72 flex-col gap-5 rounded-2xl border-2 border-dashed border-green-200/40 bg-dark-300 shadow-inner">
           Transformed Image

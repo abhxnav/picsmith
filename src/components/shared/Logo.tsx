@@ -20,6 +20,7 @@ const Logo = ({
       height={30}
       width={180}
       className={className}
+      priority
     />
   )
 }

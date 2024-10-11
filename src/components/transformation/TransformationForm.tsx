@@ -27,6 +27,9 @@ import { CustomFormField, MediaUploader, TransformedImage } from '@/components'
 import { useState, useTransition } from 'react'
 import { debounce, mergeObjects } from '@/lib/utils'
 import { updateCredits } from '@/lib/actions/user.actions'
+import { getCldImageUrl } from 'next-cloudinary'
+import { addImage, updateImage } from '@/lib/actions/image.actions'
+import { useRouter } from 'next/navigation'
 
 export const formSchema = z.object({
   title: z.string(),
@@ -44,6 +47,7 @@ const TransformationForm = ({
   creditBalance,
   config = null,
 }: TransformationFormProps) => {
+  const router = useRouter()
   const transformationType = transformationTypes[type]
 
   const [image, setImage] = useState<any>(data)
@@ -71,8 +75,65 @@ const TransformationForm = ({
     defaultValues: initialValues,
   })
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values)
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    if (data || image) {
+      const transformationURL = getCldImageUrl({
+        width: image?.width,
+        height: image?.height,
+        src: image?.publicId,
+        ...transformationConfig,
+      })
+
+      const imageData = {
+        title: values.title,
+        publicId: image?.publicId,
+        transformationType: type,
+        width: image?.width,
+        height: image?.height,
+        config: transformationConfig,
+        secureURL: image?.secureURL,
+        transformationURL,
+        aspectRatio: values.aspectRatio,
+        prompt: values.prompt,
+        color: values.color,
+      }
+
+      if (action === 'Add') {
+        try {
+          const newImage = await addImage({
+            image: imageData,
+            userId,
+            path: '/',
+          })
+
+          if (newImage) {
+            form.reset()
+            setImage(data)
+            router.push(`/transformations/${newImage._id}`)
+          }
+        } catch (error) {
+          console.error(error)
+        }
+      }
+
+      if (action === 'Update') {
+        try {
+          const updatedImage = await updateImage({
+            image: { ...imageData, _id: data?._id },
+            userId,
+            path: `/transformations/${data?._id}`,
+          })
+
+          if (updatedImage) {
+            router.push(`/transformations/${updatedImage._id}`)
+          }
+        } catch (error) {
+          console.error(error)
+        }
+      }
+    }
+
+    setIsSubmitting(false)
   }
 
   const onSelectHandler = (
