@@ -15,6 +15,7 @@ import {
 } from '@/components/ui'
 import {
   aspectRatioOptions,
+  creditFee,
   transformationDefaultValues,
   transformationTypes,
 } from '@/constants'
@@ -23,7 +24,12 @@ import {
   TransformationFormProps,
   Transformations,
 } from '@/types'
-import { CustomFormField, MediaUploader, TransformedImage } from '@/components'
+import {
+  CustomFormField,
+  InsufficientCreditsModal,
+  MediaUploader,
+  TransformedImage,
+} from '@/components'
 import { useState, useTransition } from 'react'
 import { debounce, mergeObjects } from '@/lib/utils'
 import { updateCredits } from '@/lib/actions/user.actions'
@@ -184,13 +190,14 @@ const TransformationForm = ({
     setNewTransformation(null)
 
     startTransition(async () => {
-      await updateCredits(userId, -1)
+      await updateCredits(userId, creditFee)
     })
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
         <CustomFormField
           control={form.control}
           name="title"

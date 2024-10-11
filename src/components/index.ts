@@ -6,3 +6,4 @@ export { default as TransformationForm } from '@/components/transformation/Trans
 export { default as CustomFormField } from '@/components/shared/CustomFormField'
 export { default as MediaUploader } from '@/components/transformation/MediaUploader'
 export { default as TransformedImage } from '@/components/transformation/TransformedImage'
+export { default as InsufficientCreditsModal } from '@/components/shared/InsufficientCreditsModal'
