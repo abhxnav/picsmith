@@ -30,7 +30,7 @@ import {
   MediaUploader,
   TransformedImage,
 } from '@/components'
-import { useState, useTransition } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 import { debounce, mergeObjects } from '@/lib/utils'
 import { updateCredits } from '@/lib/actions/user.actions'
 import { getCldImageUrl } from 'next-cloudinary'
@@ -193,6 +193,12 @@ const TransformationForm = ({
       await updateCredits(userId, creditFee)
     })
   }
+
+  useEffect(() => {
+    if (image && (type === 'restore' || type === 'removeBackground')) {
+      setNewTransformation(transformationType.config)
+    }
+  }, [image, transformationType.config, type])
 
   return (
     <Form {...form}>
