@@ -44,7 +44,7 @@ const MobileNav = () => {
                         className={`flex p-18 whitespace-nowrap w-full rounded-xl ${
                           isActive
                             ? 'bg-accent-400 text-dark-400'
-                            : 'text-dark-700'
+                            : 'text-dark-800'
                         }`}
                       >
                         <Link

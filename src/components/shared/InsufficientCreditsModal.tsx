@@ -20,7 +20,7 @@ const InsufficientCreditsModal = () => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <div className="flex items-center justify-between">
-            <p className="text-base font-semibold text-dark-700">
+            <p className="text-base font-semibold text-dark-800">
               Insufficient Credits
             </p>
             <AlertDialogCancel

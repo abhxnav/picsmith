@@ -56,7 +56,7 @@ const MediaUploader = ({
             sourceBg: '#151515',
             windowBorder: '#86efac',
             tabIcon: '#86efac',
-            inactiveTabIcon: '#ABB8C4',
+            inactiveTabIcon: '#BFBFBF',
             action: '#86efac',
             link: '#86efac',
             inProgress: '#86efac',

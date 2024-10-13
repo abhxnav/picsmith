@@ -31,7 +31,7 @@ const Sidebar = () => {
                       className={`flex justify-center items-center text-base font-semibold w-full whitespace-nowrap rounded-xl bg-cover transition-all hover:bg-accent-400 hover:shadow-inner group ${
                         isActive
                           ? 'bg-accent-400 text-dark-400'
-                          : 'text-dark-700'
+                          : 'text-dark-800'
                       }`}
                     >
                       <Link
@@ -60,7 +60,7 @@ const Sidebar = () => {
                       className={`flex justify-center items-center text-base font-semibold w-full whitespace-nowrap rounded-xl bg-cover transition-all hover:bg-accent-400 hover:shadow-inner group ${
                         isActive
                           ? 'bg-accent-400 text-dark-400'
-                          : 'text-dark-700'
+                          : 'text-dark-800'
                       }`}
                     >
                       <Link
@@ -88,7 +88,7 @@ const Sidebar = () => {
                         userButtonBox: 'flex flex-row-reverse px-4',
                         avatarBox: 'w-8 h-8',
                         userButtonOuterIdentifier:
-                          'text-base font-semibold text-dark-700',
+                          'text-base font-semibold text-dark-800',
                       },
                     }}
                   />
