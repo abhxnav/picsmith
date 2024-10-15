@@ -1,11 +1,20 @@
 'use server'
 
-import { AddImageParams, UpdateImageParams } from '@/types'
-import { handleError, ParseStringify } from '@/lib/utils'
+import { AddImageParams, GetAllImagesParams, UpdateImageParams } from '@/types'
+import { handleError, parseStringify } from '@/lib/utils'
 import { connectToDatabase } from '@/lib/database/mongoose'
 import { revalidatePath } from 'next/cache'
 import { Image, User } from '@/lib/database/models'
 import { redirect } from 'next/navigation'
+import { v2 as cloudinary } from 'cloudinary'
+
+// ========== HELPER ===========
+const populateUser = (query: any) =>
+  query.populate({
+    path: 'author',
+    model: User,
+    select: '_id firstName lastName ',
+  })
 
 // =========== ADD IMAGE ===========
 export const addImage = async ({ image, userId, path }: AddImageParams) => {
@@ -19,7 +28,7 @@ export const addImage = async ({ image, userId, path }: AddImageParams) => {
     const newImage = await Image.create({ ...image, author: author._id })
 
     revalidatePath(path)
-    return ParseStringify(newImage)
+    return parseStringify(newImage)
   } catch (error) {
     handleError(error)
   }
@@ -47,7 +56,7 @@ export const updateImage = async ({
     )
 
     revalidatePath(path)
-    return ParseStringify(updatedImage)
+    return parseStringify(updatedImage)
   } catch (error) {
     handleError(error)
   }
@@ -67,12 +76,6 @@ export const deleteImage = async (imageId: string) => {
 
 // ========== GET IMAGE BY ID ===========
 export const getImageById = async (imageId: string) => {
-  const populateUser = (query: any) =>
-    query.populate({
-      path: 'author',
-      model: User,
-      select: '_id firstName lastName ',
-    })
   try {
     await connectToDatabase()
 
@@ -80,7 +83,63 @@ export const getImageById = async (imageId: string) => {
 
     if (!image) throw new Error('Image not found!')
 
-    return ParseStringify(image)
+    return parseStringify(image)
+  } catch (error) {
+    handleError(error)
+  }
+}
+
+// ========== GET ALL IMAGES ===========
+export const getAllImages = async ({
+  limit = 9,
+  page = 1,
+  searchQuery = '',
+}: GetAllImagesParams) => {
+  try {
+    await connectToDatabase()
+    cloudinary.config({
+      cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+      secure: true,
+    })
+
+    let expression = 'folder=picsmith'
+
+    if (searchQuery) {
+      expression += ` AND ${searchQuery}`
+    }
+
+    const { resources } = await cloudinary.search
+      .expression(expression)
+      .execute()
+
+    const resourceIds = resources.map((resource: any) => resource.public_id)
+
+    let query = {}
+
+    if (searchQuery) {
+      query = {
+        publicId: {
+          $in: resourceIds,
+        },
+      }
+    }
+
+    const skipAmount = (Number(page) - 1) * limit
+
+    const images = await populateUser(Image.find(query))
+      .sort({ updatedAt: -1 })
+      .skip(skipAmount)
+      .limit(limit)
+    const totalImages = await Image.find(query).countDocuments()
+    const savedImages = await Image.find().countDocuments()
+
+    return {
+      data: parseStringify(images),
+      totalPages: Math.ceil(totalImages / limit),
+      savedImages,
+    }
   } catch (error) {
     handleError(error)
   }

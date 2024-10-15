@@ -68,6 +68,11 @@ const config: Config = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      fontFamily: {
+        sans: ['var(--font-roboto)', 'sans-serif'],
+        baloo: ['var(--font-baloo)', 'sans-serif'],
+        dancing: ['var(--font-dancing)', 'sans-serif'],
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],

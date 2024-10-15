@@ -1,7 +1,12 @@
 import { aspectRatioOptions } from '@/constants'
-import { AspectRatioKey } from '@/types'
+import {
+  AspectRatioKey,
+  FormUrlQueryParams,
+  RemoveUrlQueryParams,
+} from '@/types'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import qs from 'qs'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -95,4 +100,35 @@ export const dataUrl = `data:image/svg+xml;base64,${toBase64(
 )}`
 
 // =========== PARSE ===========
-export const ParseStringify = (data: any) => JSON.parse(JSON.stringify(data))
+export const parseStringify = (data: any) => JSON.parse(JSON.stringify(data))
+
+// =========== URL QUERY ===========
+export const formUrlQuery = ({
+  searchParams,
+  key,
+  value,
+}: FormUrlQueryParams) => {
+  const params = { ...qs.parse(searchParams.toString()), [key]: value }
+
+  return `${window.location.pathname}?${qs.stringify(params, {
+    skipNulls: true,
+  })}`
+}
+
+// ========== REMOVE KEY FROM QUERY ===========
+export function removeKeysFromQuery({
+  searchParams,
+  keysToRemove,
+}: RemoveUrlQueryParams) {
+  const currentUrl = qs.parse(searchParams)
+
+  keysToRemove.forEach((key) => {
+    delete currentUrl[key]
+  })
+
+  Object.keys(currentUrl).forEach(
+    (key) => currentUrl[key] == null && delete currentUrl[key]
+  )
+
+  return `${window.location.pathname}?${qs.stringify(currentUrl)}`
+}

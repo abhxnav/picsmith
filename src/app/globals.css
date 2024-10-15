@@ -14,6 +14,22 @@ body {
   @apply bg-accent-400 !important
 }
 
+.accent-gradient-ud {
+  background: hsla(142, 71%, 45%, 1);
+  background: linear-gradient(270deg, hsla(142, 71%, 45%, 1) 0%, hsla(142, 69%, 58%, 1) 100%);
+  background: -moz-linear-gradient(270deg, hsla(142, 71%, 45%, 1) 0%, hsla(142, 69%, 58%, 1) 100%);
+  background: -webkit-linear-gradient(270deg, hsla(142, 71%, 45%, 1) 0%, hsla(142, 69%, 58%, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#22C55E', endColorstr='#4ADE80', GradientType=1);
+}
+
+.accent-gradient-lr {
+  background: hsla(142, 71%, 45%, 1);
+  background: linear-gradient(0deg, hsla(142, 71%, 45%, 1) 0%, hsla(142, 69%, 58%, 1) 100%);
+  background: -moz-linear-gradient(0deg, hsla(142, 71%, 45%, 1) 0%, hsla(142, 69%, 58%, 1) 100%);
+  background: -webkit-linear-gradient(0deg, hsla(142, 71%, 45%, 1) 0%, hsla(142, 69%, 58%, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#22C55E', endColorstr='#4ADE80', GradientType=1);
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
