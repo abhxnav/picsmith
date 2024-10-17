@@ -23,7 +23,7 @@ const DeleteConfirmation = ({ imageId }: { imageId: string }) => {
       <AlertDialogTrigger asChild className="w-full rounded-full">
         <Button
           type="button"
-          className="py-4 px-6 flex items-center justify-center gap-3 rounded-full text-base font-semibold focus-visible:ring-offset-0 focus-visible:ring-transparent"
+          className="p-6 rounded-xl font-semibold focus-visible:ring-offset-0 focus-visible:ring-transparent"
           variant="destructive"
         >
           Delete Image

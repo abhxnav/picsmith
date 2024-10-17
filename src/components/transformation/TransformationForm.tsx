@@ -228,6 +228,7 @@ const TransformationForm = ({
                 onValueChange={(value) =>
                   onSelectHandler(value, field.onChange)
                 }
+                value={field.value}
               >
                 <SelectTrigger className="w-full border-2 border-green-200/40 shadow-sm shadow-green-200/40 rounded-2xl h-12 md:h-14 text-dark-600 font-semibold disabled:opacity-100 placeholder:text-dark-400/50 px-4 py-3 focus:ring-offset-0 focus-visible:ring-transparent focus:ring-transparent focus-visible:ring-0 focus-visible:outline-none">
                   <SelectValue placeholder="Select size" />

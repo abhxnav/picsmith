@@ -82,11 +82,11 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
         </div>
 
         {userId === image.author.clerkId && (
-          <div className="mt-4 space-y-4">
+          <div className="flex flex-col md:flex-row gap-4 mt-4">
             <Button
               asChild
               type="button"
-              className="bg-accent-400 bg-cover rounded-full py-4 px-6 text-base font-semibold h-12 w-full md:h-14 capitalize"
+              className="bg-accent-400 hover:bg-accent-500 text-dark-400 rounded-xl p-6 font-semibold w-full capitalize"
             >
               <Link href={`/transformations/${image._id}/update`}>
                 Update Image
@@ -96,7 +96,6 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
             <DeleteConfirmation imageId={image._id} />
           </div>
         )}
-        <DeleteConfirmation imageId={image._id} />
       </section>
     </>
   )
