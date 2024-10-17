@@ -30,18 +30,20 @@ const DeleteConfirmation = ({ imageId }: { imageId: string }) => {
         </Button>
       </AlertDialogTrigger>
 
-      <AlertDialogContent className="flex flex-col gap-10">
+      <AlertDialogContent className="flex flex-col gap-10 bg-dark-400 border border-green-200/40">
         <AlertDialogHeader>
-          <AlertDialogTitle>
+          <AlertDialogTitle className="text-dark-800">
             Are you sure you want to delete this image?
           </AlertDialogTitle>
-          <AlertDialogDescription className="font-normal text-base">
+          <AlertDialogDescription className="font-normal text-base text-dark-700">
             This will permanently delete this image
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel className="bg-transparent hover:bg-dark-300 hover:text-dark-800 text-dark-800">
+            Cancel
+          </AlertDialogCancel>
           <AlertDialogAction
             className="border bg-red-500 text-white hover:bg-red-600"
             onClick={() =>
