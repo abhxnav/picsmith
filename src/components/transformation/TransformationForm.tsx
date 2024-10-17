@@ -174,9 +174,9 @@ const TransformationForm = ({
           [fieldName === 'prompt' ? 'prompt' : 'to']: value,
         },
       }))
+    }, 1000)()
 
-      return onChange(value)
-    }, 1000)
+    return onChange(value)
   }
 
   // TODO: Make credit fee dynamic
@@ -230,7 +230,7 @@ const TransformationForm = ({
                 }
                 value={field.value}
               >
-                <SelectTrigger className="w-full border-2 border-green-200/40 shadow-sm shadow-green-200/40 rounded-2xl h-12 md:h-14 text-dark-600 font-semibold disabled:opacity-100 placeholder:text-dark-400/50 px-4 py-3 focus:ring-offset-0 focus-visible:ring-transparent focus:ring-transparent focus-visible:ring-0 focus-visible:outline-none">
+                <SelectTrigger className="w-full border-2 border-green-200/40 shadow-sm shadow-green-200/40 rounded-2xl h-12 md:h-14 text-dark-800 font-semibold disabled:opacity-100 placeholder:text-dark-400/50 px-4 py-3 focus:ring-offset-0 focus-visible:ring-transparent focus:ring-transparent focus-visible:ring-0 focus-visible:outline-none">
                   <SelectValue placeholder="Select size" />
                 </SelectTrigger>
                 <SelectContent className="bg-dark-400 text-dark-800 border border-green-200/40">
@@ -261,7 +261,7 @@ const TransformationForm = ({
               render={({ field }) => (
                 <Input
                   value={field.value}
-                  className="rounded-2xl border-2 border-green-200/40 shadow-sm shadow-green-200/40 text-dark-600 disabled:opacity-100 font-semibold h-12 md:h-14 focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent"
+                  className="rounded-2xl border-2 border-green-200/40 shadow-sm shadow-green-200/40 text-dark-800 disabled:opacity-100 font-semibold h-12 md:h-14 focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent"
                   onChange={(e) =>
                     onInputHandler(
                       'prompt',
@@ -283,7 +283,7 @@ const TransformationForm = ({
                 render={({ field }) => (
                   <Input
                     value={field.value}
-                    className="rounded-2xl border-2 border-green-200/40 shadow-sm shadow-green-200/40 text-dark-600 disabled:opacity-100 font-semibold h-12 md:h-14 focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent"
+                    className="rounded-2xl border-2 border-green-200/40 shadow-sm shadow-green-200/40 text-dark-800 disabled:opacity-100 font-semibold h-12 md:h-14 focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent"
                     onChange={(e) =>
                       onInputHandler(
                         'color',
