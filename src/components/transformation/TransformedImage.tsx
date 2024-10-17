@@ -1,3 +1,5 @@
+'use client'
+
 import { TransformedImageProps } from '@/types'
 import { Button } from '@/components/ui'
 import Image from 'next/image'
