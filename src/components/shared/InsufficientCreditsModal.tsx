@@ -2,6 +2,7 @@
 
 import {
   AlertDialog,
+  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -17,53 +18,54 @@ const InsufficientCreditsModal = () => {
 
   return (
     <AlertDialog defaultOpen>
-      <AlertDialogContent>
+      <AlertDialogContent className="bg-dark-400 border border-green-200/40">
         <AlertDialogHeader>
-          <div className="flex items-center justify-between">
-            <p className="text-base font-semibold text-dark-800">
-              Insufficient Credits
-            </p>
+          <div className="flex items-center justify-end">
             <AlertDialogCancel
-              className="border-0 p-0 hover:bg-transparent"
+              className="border-none p-0 bg-transparent hover:bg-transparent"
               onClick={() => router.push('/profile')}
             >
               <Image
                 src="/assets/icons/close.svg"
                 alt="close"
-                width={24}
-                height={24}
+                width={28}
+                height={28}
                 className="cursor-pointer"
               />
             </AlertDialogCancel>
           </div>
-          <Image
-            src="/assets/icons/coins.svg"
-            alt="credits"
-            width={100}
-            height={100}
-          />
-          <AlertDialogTitle className="text-2xl font-bold text-dark-500">
-            Oops!.. Looks like you don't have enough credits.
+          <div className="w-full flex items-center justify-center pb-8 gap-10">
+            <Image
+              src="/assets/icons/credits.svg"
+              alt="credits"
+              width={100}
+              height={100}
+            />
+            <p className="text-accent-400 text-6xl font-semibold font-baloo">
+              OOPS!
+            </p>
+          </div>
+          <AlertDialogTitle className="text-2xl font-bold text-dark-800">
+            Looks like you don't have enough credits.
           </AlertDialogTitle>
-          <AlertDialogDescription className="text-base py-3"></AlertDialogDescription>
-          Don't worry. You can resume enjoying our services by purchasing more
-          credits.
+          <AlertDialogDescription className="text-base pb-6 text-dark-600">
+            Don't worry. You can resume enjoying our services by purchasing more
+            credits.
+          </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter>
+        <AlertDialogFooter className="flex gap-1">
           <AlertDialogCancel
-            className="py-4 px-6 flex items-center justify-center gap-3 rounded-full text-base font-semibold focus-visible:ring-offset-0 focus-visible:ring-transparent w-full bg-accent-400 text-dark-300"
+            className="p-4 text-base font-semibold focus-visible:ring-offset-0 focus-visible:ring-transparent w-full bg-transparent hover:bg-dark-300 text-dark-800 hover:text-dark-800"
             onClick={() => router.push('/profile')}
           >
             No, cancel
           </AlertDialogCancel>
-        </AlertDialogFooter>
-        <AlertDialogFooter>
-          <AlertDialogCancel
-            className="py-4 px-6 flex items-center justify-center gap-3 rounded-full text-base font-semibold focus-visible:ring-offset-0 focus-visible:ring-transparent w-full bg-accent-400 text-dark-300"
-            onClick={() => router.push('/profile')}
+          <AlertDialogAction
+            className="p-4 text-base font-semibold focus-visible:ring-offset-0 focus-visible:ring-transparent w-full bg-accent-400 hover:bg-accent-500 text-dark-300"
+            onClick={() => router.push('/credits')}
           >
             Yes, proceed
-          </AlertDialogCancel>
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
