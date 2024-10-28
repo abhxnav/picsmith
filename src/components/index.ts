@@ -9,6 +9,7 @@ export { default as Collection } from '@/components/shared/Collection'
 export { default as Search } from '@/components/shared/Search'
 export { default as DeleteConfirmation } from '@/components/shared/DeleteConfirmation'
 export { default as Checkout } from '@/components/shared/Checkout'
+export { default as TypingEffect } from '@/components/shared/TypingEffect'
 
 export { default as TransformationForm } from '@/components/transformation/TransformationForm'
 export { default as MediaUploader } from '@/components/transformation/MediaUploader'

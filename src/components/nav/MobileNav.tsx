@@ -12,8 +12,8 @@ const MobileNav = () => {
   const pathname = usePathname()
 
   return (
-    <header className="flex justify-between items-center fixed h-16 w-full border-b border-dark-500 shadow-sm shadow-dark-500 bg-dark-400 p-5  lg:hidden">
-      <Link href="/" className="flex items-center gap-2 md:py-2">
+    <header className="flex justify-between items-center fixed h-16 w-full border-b border-dark-500 shadow-sm shadow-dark-500 bg-dark-400 p-5 lg:hidden">
+      <Link href="/dashboard" className="flex items-center gap-2 md:py-2">
         <Logo variant="full" className="h-7 w-fit" />
       </Link>
 

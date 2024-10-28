@@ -109,7 +109,7 @@ const TransformationForm = ({
           const newImage = await addImage({
             image: imageData,
             userId,
-            path: '/',
+            path: '/dashboard',
           })
 
           if (newImage) {

@@ -14,7 +14,7 @@ const Sidebar = () => {
   return (
     <aside className="hidden h-screen w-72 bg-dark-400 p-5 shadow-md shadow-green-200/50 lg:flex">
       <div className="flex size-full flex-col gap-4">
-        <Link href="/" className="flex items-center gap-2 md:py-2">
+        <Link href="/dashboard" className="flex items-center gap-2 md:py-2">
           <Logo />
         </Link>
 
@@ -101,7 +101,7 @@ const Sidebar = () => {
           <SignedOut>
             <Button
               asChild
-              className="buttonpy-4 px-6 flex-center gap-3 rounded-full p-16-semibold focus-visible:ring-offset-0 focus-visible:ring-transparent bg-accent-400 bg-cover"
+              className="button py-4 px-6 flex-center gap-3 rounded-full p-16-semibold focus-visible:ring-offset-0 focus-visible:ring-transparent bg-accent-400 bg-cover"
             >
               <Link href="/sign-in">Login</Link>
             </Button>

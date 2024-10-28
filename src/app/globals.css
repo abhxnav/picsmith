@@ -93,6 +93,15 @@ body {
   }
 }
 
+.landing-gradient {
+  background: hsla(142, 76%, 55%, 1);
+  background: linear-gradient(315deg, hsla(142, 76%, 55%, 1) 0%, hsla(0, 0%, 8%, 1) 85%);
+  background: -moz-linear-gradient(315deg, hsla(142, 76%, 55%, 1) 0%, hsla(0, 0%, 8%, 1) 85%);
+  background: -webkit-linear-gradient(315deg, hsla(142, 76%, 55%, 1) 0%, hsla(0, 0%, 8%, 1) 85%);
+
+  filter: blur(150px) brightness(0.5);
+}
+
 @layer base {
   * {
     @apply border-border;

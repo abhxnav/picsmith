@@ -70,7 +70,7 @@ export const deleteImage = async (imageId: string) => {
   } catch (error) {
     handleError(error)
   } finally {
-    redirect('/')
+    redirect('/dashboard')
   }
 }
 
